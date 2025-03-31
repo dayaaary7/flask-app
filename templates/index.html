@@ -68,7 +68,7 @@ CSS Dependencies:
     <nav class="top-nav">
         <div class="nav-container">
             <div class="nav-logo">
-                <i class="fas fa-code-branch"></i>
+                <img src="{{ url_for('static', filename='image.png') }}" alt="Logo">
                 <span>Feature Analyzer</span>
             </div>
             <!-- <div class="nav-links">
@@ -141,6 +141,8 @@ CSS Dependencies:
     <!-- Add this script section after your existing scripts -->
     <script>
         function selectStep(stepIndex) {
+            const dashboard = document.getElementById('dashboardContainer');
+            dashboard.style.display = 'none';
             document.querySelector('.stepper-container').style.display = 'block';
             
             const steps = document.querySelectorAll('.step');
@@ -179,15 +181,29 @@ CSS Dependencies:
                     contentContainer.innerHTML = `
                         <div class="input-group">
                             <label>Customer URL</label>
-                            <input type="url" id="customerUrl" placeholder="Enter website URL">
+                            <div class="input-wrapper">
+                                <i class="fas fa-link input-icon"></i>
+                                <input type="url" id="customerUrl" placeholder="https://example.com">
+                            </div>
                         </div>
                         <div class="input-group">
                             <label>Upload Document</label>
-                            <input type="file" id="documentUpload" accept=".pdf,.doc,.docx">
+                            <div class="file-upload-wrapper">
+                                <input type="file" id="documentUpload" accept=".pdf,.doc,.docx">
+                                <div class="file-upload-label">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span>Choose a file or drag it here</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="input-group">
                             <label>Custom Prompt</label>
-                            <textarea id="promptInput" placeholder="Enter your prompt here"></textarea>
+                            <div class="input-wrapper">
+                                <textarea id="promptInput" placeholder="Enter your instructions or requirements here..."></textarea>
+                                <div class="textarea-footer">
+                                    <span class="char-count">0/500</span>
+                                </div>
+                            </div>
                         </div>
                         <button class="next-btn" onclick="proceedToStep2()">Next</button>
                     `;
@@ -201,7 +217,8 @@ CSS Dependencies:
                                 </div>
                                 <div class="terminal-title">Scraping Progress</div>
                             </div>
-                            <div class="terminal-content" id="scrapeOutput"></div>
+                            <div class="terminal-content" id="scrapeOutput">Vibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AIVibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AIVibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AIVibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AIVibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AIVibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AIVibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AIVibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AIVibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AI
+                                </div>
                         </div>
                         <button class="next-btn" onclick="proceedToStep3()">Compare Results</button>
                     `;
@@ -212,7 +229,8 @@ CSS Dependencies:
                             <div class="terminal-header">
                                 <div class="terminal-title">Comparison Results</div>
                             </div>
-                            <div class="terminal-content" id="comparisonOutput"></div>
+                            <div class="terminal-content" id="comparisonOutput">Vibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AIVibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AIVibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AIVibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AIVibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AIVibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AIVibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AIVibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AIVibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2 . The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AI
+                                </div>
                         </div>
                         <button class="next-btn" onclick="proceedToStep4()">Generate Summary</button>
                     `;
