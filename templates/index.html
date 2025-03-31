@@ -65,7 +65,195 @@ CSS Dependencies:
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
+    <!-- Add this stepper section before your existing content -->
+    <!-- Replace the existing stepper section -->
+    <div class="stepper-container">
+       <!-- <div class="stepper"> -->
+    <div class="stepper">
+        <!-- Step indicators -->
+        <div class="step completed" onclick="selectStep(0)">
+            <div class="step-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M19 14l-7 7m0 0l-7-7m7 7V3" stroke-width="2"/>
+                </svg>
+            </div>
+            <div class="step-label">STEP 1</div>
+            <div class="step-title">Collecting Inputs</div>
+            <div class="step-status">Completed</div>
+        </div>
+        <!-- Other step indicators remain the same -->
+    <!-- </div> -->
+
+    <div class="step completed" onclick="selectStep(1)">
+        <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M4 4v16m0 0h16M4 20l16-16" stroke-width="2"/>
+            </svg>
+        </div>
+        <div class="step-label">STEP 2</div>
+        <div class="step-title">Scrape Details</div>
+        <div class="step-status">Completed</div>
+    </div>
+
+    <div class="step in-progress" onclick="selectStep(2)">
+        <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M8 6v12m8-12v12M3 10h18M3 14h18" stroke-width="2"/>
+            </svg>
+        </div>
+        <div class="step-label">STEP 3</div>
+        <div class="step-title">Comparing Features</div>
+        <div class="step-status">In Progress</div>
+    </div>
+
+    <div class="step" onclick="selectStep(3)">
+        <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M4 4h16v16H4V4zm4 4h8m-8 4h8m-8 4h4" stroke-width="2"/>
+            </svg>
+        </div>
+        <div class="step-label">STEP 4</div>
+        <div class="step-title">Summary</div>
+        <div class="step-status">Pending</div>
+    </div>
+
+</div>
+
+<div class="step-content-container">
+    <div class="step-content" id="activeStepContent"></div>
+</div>
+    </div>
+
+    <!-- Add this script section after your existing scripts -->
+    <script>
+        function selectStep(stepIndex) {
+            document.getElementById('dashboardContainer').style.display = 'none';
+            document.querySelector('.stepper-container').style.display = 'block';
+            
+            const steps = document.querySelectorAll('.step');
+            const stepDetails = document.querySelectorAll('.step-details');
+            
+            steps.forEach((step, index) => {
+                if (index === stepIndex) {
+                    step.classList.add('active', 'in-progress');
+                } else if (index < stepIndex) {
+                    step.classList.add('completed');
+                    step.classList.remove('active', 'in-progress');
+                } else {
+                    step.classList.remove('completed', 'active', 'in-progress');
+                }
+            });
+        
+            updateStepContent(stepIndex);
+            updateProgressLine(stepIndex, steps.length);
+        }
+
+        function showDashboard() {
+            document.getElementById('dashboardContainer').style.display = 'block';
+            document.querySelector('.stepper-container').style.display = 'none';
+        }
+        function updateStepContent(stepIndex) {
+            
+            const contentContainer = document.getElementById('activeStepContent');
+            contentContainer.style.display = 'block';
+            switch(stepIndex) {
+                case 0:
+                    contentContainer.innerHTML = `
+                        <div class="input-group">
+                            <label>Customer URL</label>
+                            <input type="url" id="customerUrl" placeholder="Enter website URL">
+                        </div>
+                        <div class="input-group">
+                            <label>Upload Document</label>
+                            <input type="file" id="documentUpload" accept=".pdf,.doc,.docx">
+                        </div>
+                        <div class="input-group">
+                            <label>Custom Prompt</label>
+                            <textarea id="promptInput" placeholder="Enter your prompt here"></textarea>
+                        </div>
+                        <button class="next-btn" onclick="proceedToStep2()">Next</button>
+                    `;
+                    break;
+                case 1:
+                    contentContainer.innerHTML = `
+                        <div class="terminal-window">
+                            <div class="terminal-header">
+                                <div class="terminal-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                                <div class="terminal-title">Scraping Progress</div>
+                            </div>
+                            <div class="terminal-content" id="scrapeOutput"></div>
+                        </div>
+                        <button class="next-btn" onclick="proceedToStep3()">Compare Results</button>
+                    `;
+                    break;
+                case 2:
+                    contentContainer.innerHTML = `
+                        <div class="terminal-window">
+                            <div class="terminal-header">
+                                <div class="terminal-title">Comparison Results</div>
+                            </div>
+                            <div class="terminal-content" id="comparisonOutput"></div>
+                        </div>
+                        <button class="next-btn" onclick="proceedToStep4()">Generate Summary</button>
+                    `;
+                    break;
+                case 3:
+                    contentContainer.innerHTML = `
+                        <div class="summary-content" id="summaryOutput"></div>
+                        <button class="dashboard-link" onclick="showDashboard()">View Dashboard</button>
+                    `;
+                    break;
+            }
+        }
+
+        function updateProgressLine(stepIndex, totalSteps) {
+            const progressLine = document.querySelector('.stepper::before');
+            if (progressLine) {
+                const progress = (stepIndex / (totalSteps - 1)) * 100;
+                progressLine.style.background = `linear-gradient(to right, 
+                    #34d399 ${progress}%, 
+                    rgba(255, 255, 255, 0.1) ${progress}%
+                )`;
+            }
+        }
+
+        function proceedToStep2() {
+            const url = document.getElementById('customerUrl')?.value;
+            const file = document.getElementById('documentUpload')?.files[0];
+            const prompt = document.getElementById('promptInput')?.value;
+            
+            if (!url || !file || !prompt) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            selectStep(1);
+            simulateScraping();
+        }
+
+        function proceedToStep3() {
+            if (!document.querySelector('.step:nth-child(2).completed')) {
+                alert('Please complete the scraping process first');
+                return;
+            }
+            selectStep(2);
+            showComparison();
+        }
+
+        function proceedToStep4() {
+            if (!document.querySelector('.step:nth-child(3).completed')) {
+                alert('Please complete the comparison process first');
+                return;
+            }
+            selectStep(3);
+            showSummary();
+        }
+    </script>
+
+    <!-- Your existing content starts here -->
+    <div class="container" id="dashboardContainer">
         <h1>✓ Feature Status Tracker</h1>
         
         <div class="controls">
@@ -97,12 +285,12 @@ CSS Dependencies:
             <div class="card chart">
                 <canvas id="featureChart"></canvas>
                 <div class="legend">
-                    <span class="legend-item">
+                    <div class="legend-item">
                         <span class="dot supported"></span> Supported
-                    </span>
-                    <span class="legend-item">
+                    </div>
+                    <div class="legend-item">
                         <span class="dot enhance"></span> Need Enhancement
-                    </span>
+                    </div>
                 </div>
             </div>
 
@@ -385,5 +573,17 @@ CSS Dependencies:
             });
         });
     </script>
+        <!-- ... existing code ... -->
+        <script>
+            // Initialize step 1 on page load
+            document.addEventListener('DOMContentLoaded', function() {
+                // Initialize the chart (your existing chart code)
+                // ... existing chart initialization ...
+    
+                // Set step 1 as active and show its content
+                selectStep(0);
+            });
+        </script>
+        
 </body>
 </html>
