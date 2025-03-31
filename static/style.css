@@ -491,53 +491,80 @@ p {
     padding-top: 30px;
 }
 
-/* Remove all duplicate step-content and step-content-container styles and replace with these */
-/* .step-content {
-    max-width: 600px;
+/* Add at the top of your CSS file */
+.top-nav {
+    background: linear-gradient(to right, #1a1d21, #2d3035);
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    /* max-width: 1200px; */
     margin: 0 auto;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    display: block;
-} */
-
-/* .step-content-container {
-    margin-top: 30px;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: block;
-} */
-
-.input-group {
-    margin-bottom: 15px;
-    width: 100%;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.input-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #333;
-    font-weight: 500;
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
-.input-group input,
-.input-group textarea {
-    width: 100%;
-    padding: 10px;
-    background: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    color: #333;
-    font-size: 14px;
+.nav-logo i {
+    font-size: 1.8rem;
 }
 
-.next-btn {
-    width: 100%;
-    margin-top: 20px;
-    padding: 12px;
-    font-size: 16px;
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: #a3a3a3;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-links a:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-links a.active {
+    color: white;
+    background: var(--primary-color);
+}
+
+.nav-links i {
+    font-size: 1.1rem;
+}
+
+/* Add responsive design */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 }
 
 .step-details {

@@ -65,6 +65,20 @@ CSS Dependencies:
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-code-branch"></i>
+                <span>Feature Analyzer</span>
+            </div>
+            <!-- <div class="nav-links">
+                <a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="#"><i class="fas fa-chart-bar"></i> Analytics</a>
+                <a href="#"><i class="fas fa-history"></i> History</a>
+                <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            </div> -->
+        </div>
+    </nav>
     <!-- Add this stepper section before your existing content -->
     <!-- Replace the existing stepper section -->
     <div class="stepper-container">
@@ -127,7 +141,6 @@ CSS Dependencies:
     <!-- Add this script section after your existing scripts -->
     <script>
         function selectStep(stepIndex) {
-            document.getElementById('dashboardContainer').style.display = 'none';
             document.querySelector('.stepper-container').style.display = 'block';
             
             const steps = document.querySelectorAll('.step');
@@ -149,8 +162,13 @@ CSS Dependencies:
         }
 
         function showDashboard() {
-            document.getElementById('dashboardContainer').style.display = 'block';
-            document.querySelector('.stepper-container').style.display = 'none';
+            // document.getElementById('dashboardContainer').style.display = 'block';
+            const dashboard = document.getElementById('dashboardContainer');
+        dashboard.style.display = 'block';
+        document.querySelector('.stepper-container').style.display = 'block';
+        
+        // Smooth scroll to dashboard
+        dashboard.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
         function updateStepContent(stepIndex) {
             
@@ -253,7 +271,7 @@ CSS Dependencies:
     </script>
 
     <!-- Your existing content starts here -->
-    <div class="container" id="dashboardContainer">
+    <div class="container" id="dashboardContainer"  style="display: none; margin-top: 40px;">
         <h1>✓ Feature Status Tracker</h1>
         
         <div class="controls">
