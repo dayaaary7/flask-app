@@ -325,6 +325,9 @@ CSS Dependencies:
                     contentContainer.innerHTML = `
                         <div class="terminal-window">
                             <div class="terminal-header">
+                                <div class="terminal-dots">
+                    <span></span><span></span><span></span>
+                </div>
                                 <div class="terminal-title">Comparison Results</div>
                             </div>
                             <div class="terminal-content" id="comparisonOutput">
@@ -517,7 +520,17 @@ CSS Dependencies:
             // Display full summary immediately
             const summaryOutput = document.getElementById('summaryOutput');
             if (summaryOutput) {
-                summaryOutput.innerHTML = summaryText;
+                summaryOutput.innerHTML = `
+            <div class="summary-header">
+                <div class="terminal-dots">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="terminal-title">Summary Results</div>
+            </div>
+            <div class="terminal-content">
+                ${summaryText}
+            </div>
+        `;
             }
 
             // Add completed class immediately

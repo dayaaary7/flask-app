@@ -1141,7 +1141,7 @@ p {
 
 .summary-content {
     background: #1a1a1a;
-    padding: 20px;
+    /* padding: 20px; */
     border-radius: 8px;
     margin-top: 15px;
     /* max-width: 500px; */
@@ -1229,4 +1229,20 @@ p {
 .file-upload-wrapper.error:hover .file-upload-label {
     border-color: #ef4444;
     background: rgba(239, 68, 68, 0.15);
+}
+
+.terminal-title {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    margin-left: 12px;
+}
+
+.summary-header {
+    background: #2d2d2d;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
