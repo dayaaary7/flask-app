@@ -111,9 +111,9 @@ CSS Dependencies:
             </div>
         </div>
         <div class="button-group">
-        <button class="next-btn" onclick="proceedToStep2()">Submit</button>
-        <button class="next-btn" onclick="resetForm()">Reset</button>
-    </div>
+            <button class="next-btn" onclick="proceedToStep2()">Submit</button>
+            <button class="next-btn" onclick="resetForm()">Reset</button>
+        </div>
     </div>
     <div class="stepper-container">
         <!-- <div class="stepper"> -->
@@ -514,12 +514,14 @@ CSS Dependencies:
         function showSummary() {
             const summaryText = `Vibe coding is an AI-dependent programming practice where a programmer describes a problem in a few sentences as a prompt to a large language model (LLM) tuned for coding. This approach allows software to be quickly created and debugged while ignoring the details of the generated code 1 2. The term was introduced by Andrej Karpathy, a co-founder of OpenAI and former AI...`;
 
-            typeText(summaryText, 'summaryOutput');
+            // Display full summary immediately
+            const summaryOutput = document.getElementById('summaryOutput');
+            if (summaryOutput) {
+                summaryOutput.innerHTML = summaryText;
+            }
 
-            // Add completed class after typing is done
-            setTimeout(() => {
-                document.querySelector('.step:nth-child(4)').classList.add('completed');
-            }, summaryText.length * 30 + 500);
+            // Add completed class immediately
+            document.querySelector('.step:nth-child(4)')?.classList.add('completed');
         }
         function proceedToStep4() {
             if (!document.querySelector('.step:nth-child(3).completed')) {
