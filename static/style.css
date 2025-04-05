@@ -1148,14 +1148,15 @@ p {
 }
 
 /* Add these styles for error highlighting */
-.input-wrapper.error {
+/* .input-wrapper.error {
     border-color: #ff4444;
     box-shadow: 0 0 0 1px #ff4444;
-}
+} */
 
 .file-upload-wrapper.error {
     border-color: #ff4444;
     box-shadow: 0 0 0 1px #ff4444;
+    border-radius: 8px;
 }
 
 .input-wrapper.error input,
@@ -1199,4 +1200,33 @@ p {
 
 .reset-btn:hover {
     background-color: #374151;
+}
+
+.error-message {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+/* .input-wrapper.error input {
+    border-color: #ef4444;
+} */
+
+.input-wrapper.error input[type="url"],
+.input-wrapper.error textarea {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+.file-upload-wrapper.error .file-upload-label {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.file-upload-wrapper.error:hover .file-upload-label {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.15);
 }

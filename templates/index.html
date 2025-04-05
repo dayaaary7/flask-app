@@ -531,6 +531,14 @@ CSS Dependencies:
             selectStep(3);
             showSummary();
         }
+        function isValidUrl(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (_) {
+                return false;
+            }
+        }
     </script>
 
     <!-- Your existing content starts here -->
@@ -869,8 +877,26 @@ CSS Dependencies:
             const urlInput = document.getElementById('customerUrl');
             urlInput?.addEventListener('input', function () {
                 const wrapper = this.closest('.input-wrapper');
+                const errorSpan = wrapper?.querySelector('.error-message') || document.createElement('span');
+                errorSpan.className = 'error-message';
+
                 if (this.value.trim()) {
-                    wrapper?.classList.remove('error');
+                    if (isValidUrl(this.value.trim())) {
+                        wrapper?.classList.remove('error');
+                        errorSpan.remove();
+                    } else {
+                        wrapper?.classList.add('error');
+                        errorSpan.textContent = 'Please enter a valid URL';
+                        if (!wrapper?.querySelector('.error-message')) {
+                            wrapper?.appendChild(errorSpan);
+                        }
+                    }
+                } else {
+                    wrapper?.classList.add('error');
+                    errorSpan.textContent = 'URL is required';
+                    if (!wrapper?.querySelector('.error-message')) {
+                        wrapper?.appendChild(errorSpan);
+                    }
                 }
             });
 
