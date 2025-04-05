@@ -489,6 +489,7 @@ p {
     background: #1a1d21;
     border-radius: 12px;
     padding: 30px;
+    position: relative;
 }
 
 .step-info {
@@ -906,7 +907,35 @@ p {
     height: 400px;
     margin: 15px auto 0;
 }
+.back-btn {
+    position: absolute;
+    /* top: 20px;
+    left: 20px; */
+    margin-top: 5px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
 
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.back-btn svg {
+    width: 24px;
+    height: 24px;
+}
 .step-label {
     font-size: 12px;
     color: #9ca3af;
@@ -995,7 +1024,15 @@ p {
 .terminal-dots span:nth-child(3) {
     background: #27c93f;
 }
-
+#inputContainer {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
 
 .terminal-content {
     padding: 16px;
@@ -1074,4 +1111,24 @@ p {
     border-radius: 8px;
     margin-top: 15px;
     /* max-width: 500px; */
+}
+
+/* Add these styles for error highlighting */
+.input-wrapper.error {
+    border-color: #ff4444;
+    box-shadow: 0 0 0 1px #ff4444;
+}
+
+.file-upload-wrapper.error {
+    border-color: #ff4444;
+    box-shadow: 0 0 0 1px #ff4444;
+}
+
+.input-wrapper.error input,
+.input-wrapper.error textarea {
+    color: #ff4444;
+}
+
+.file-upload-wrapper.error .file-upload-label {
+    color: #ff4444;
 }
