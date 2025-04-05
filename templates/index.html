@@ -110,7 +110,10 @@ CSS Dependencies:
                 </div>
             </div>
         </div>
+        <div class="button-group">
         <button class="next-btn" onclick="proceedToStep2()">Submit</button>
+        <button class="next-btn" onclick="resetForm()">Reset</button>
+    </div>
     </div>
     <div class="stepper-container">
         <!-- <div class="stepper"> -->
@@ -428,6 +431,41 @@ CSS Dependencies:
             selectStep(1);
             simulateScraping();
         }
+        // Add this function after your existing functions
+        function resetForm() {
+            // Reset URL input
+            const urlInput = document.getElementById('customerUrl');
+            if (urlInput) {
+                urlInput.value = '';
+                urlInput.closest('.input-wrapper')?.classList.remove('error');
+            }
+
+            // Reset file input
+            const fileInput = document.getElementById('documentUpload');
+            if (fileInput) {
+                fileInput.value = '';
+                const wrapper = fileInput.closest('.file-upload-wrapper');
+                wrapper?.classList.remove('error');
+                const label = wrapper?.querySelector('.file-upload-label span');
+                if (label) {
+                    label.textContent = 'Choose a file or drag it here';
+                }
+            }
+
+            // Reset prompt input
+            const promptInput = document.getElementById('promptInput');
+            if (promptInput) {
+                promptInput.value = '';
+                promptInput.closest('.input-wrapper')?.classList.remove('error');
+            }
+
+            // Reset character count
+            const charCount = document.querySelector('.char-count');
+            if (charCount) {
+                charCount.textContent = '0/500';
+            }
+        }
+
         function typeText(text, elementId, speed = 30) {
             const element = document.getElementById(elementId);
             let index = 0;

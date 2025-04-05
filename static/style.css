@@ -731,13 +731,17 @@ p {
 
 /* File Upload Styling */
 .file-upload-wrapper {
-    position: relative;
+    /* position: relative;
     width: 100%;
     min-height: 120px;
     border: 2px dashed rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.05);
     transition: all 0.3s ease;
+    cursor: pointer; */
+    position: relative;
+    width: 100%;
+    min-height: 120px;
     cursor: pointer;
 }
 
@@ -754,9 +758,39 @@ p {
     left: 0;
     opacity: 0;
     cursor: pointer;
+    z-index: 2;
 }
 
 .file-upload-label {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.file-upload-wrapper:hover .file-upload-label {
+    border-color: #34d399;
+}
+
+/* .file-upload-wrapper input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+} */
+
+/* .file-upload-label {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -770,7 +804,7 @@ p {
     color: #34d399;
     margin-bottom: 8px;
     display: block;
-}
+} */
 
 /* Textarea Styling */
 .input-group textarea {
@@ -1131,4 +1165,38 @@ p {
 
 .file-upload-wrapper.error .file-upload-label {
     color: #ff4444;
+}
+
+/* .button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+} */
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.button-group .next-btn {
+    flex: 0 1 200px;  /* Set fixed width for buttons */
+    margin: 0;        /* Remove any default margins */
+}
+
+.reset-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    background-color: #4b5563;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.reset-btn:hover {
+    background-color: #374151;
 }
